@@ -44,10 +44,10 @@
 		>
 			<img
 				src="{{ user.photoUrl || './assets/user.png' }}"
-				alt="{{ user.username }}"
+				alt="{{ user.knownAs }}"
 			/>
 			<a class="ml-2 dropdown-toggle text-light" dropdownToggle
-				>Welcome {{ user.username | titlecase }}</a
+				>Welcome {{ user.knownAs | titlecase }}</a
 			>
 			<div class="dropdown-menu mt-3" *dropdownMenu>
 				<a class="dropdown-item" routerLink="/member/edit"
