@@ -27,6 +27,14 @@
 						>Messages</a
 					>
 				</li>
+				<li *appHasRole="['Admin', 'Moderator']" class="nav-item">
+					<a
+						class="nav-link"
+						routerLink="/admin"
+						routerLinkActive="active"
+						>Admin</a
+					>
+				</li>
 			</ng-container>
 			<li class="nav-item">
 				<a
@@ -47,7 +55,7 @@
 				alt="{{ user.knownAs }}"
 			/>
 			<a class="ml-2 dropdown-toggle text-light" dropdownToggle
-				>Welcome {{ user.knownAs | titlecase }}</a
+				>Welcome {{ user.knownAs || user.username | titlecase }}</a
 			>
 			<div class="dropdown-menu mt-3" *dropdownMenu>
 				<a class="dropdown-item" routerLink="/member/edit"
