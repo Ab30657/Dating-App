@@ -1,11 +1,17 @@
 <div class="card">
 	<div class="card-body">
-		<div class="" *ngIf="messages?.length === 0">
+		<div
+			class=""
+			*ngIf="(messageService.messageThread$ | async)?.length === 0"
+		>
 			Start a new conversation...
 		</div>
 
-		<ul *ngIf="messages?.length > 0" class="chat">
-			<li *ngFor="let message of messages">
+		<ul
+			*ngIf="(messageService.messageThread$ | async)?.length > 0"
+			class="chat"
+		>
+			<li *ngFor="let message of messageService.messageThread$ | async">
 				<div class="">
 					<span class="chat-img float-right">
 						<img
