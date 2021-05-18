@@ -22,16 +22,18 @@ namespace API.Data
 		public DbSet<Message> Messages { get; set; }
 		public DbSet<Group> Groups { get; set; }
 		public DbSet<Connection> Connections { get; set; }
+		public DbSet<Photo> Photos { get; set; }
+
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);
-
 			builder.Entity<AppUser>().HasMany(u => u.UserRoles).WithOne(x => x.User)
 					.HasForeignKey(x => x.UserId).IsRequired();
 			builder.Entity<AppRole>().HasMany(x => x.UserRoles).WithOne(x => x.Role)
 					.HasForeignKey(x => x.RoleId).IsRequired();
 
+			builder.Entity<Photo>().HasQueryFilter(x => x.IsApproved);
 			builder.Entity<UserLike>().HasKey(k => new { k.SourceUserId, k.LikedUserId });
 			builder.Entity<UserLike>().HasOne(s => s.SourceUser).WithMany(l => l.LikedUsers)
 				.HasForeignKey(s => s.SourceUserId).OnDelete(DeleteBehavior.Cascade);
