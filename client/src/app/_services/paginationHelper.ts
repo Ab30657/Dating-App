@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 export function getPaginatedResult<T>(url, params, http: HttpClient) {
+	console.log(params);
 	const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
 	return http
 		.get<T>(url, {
