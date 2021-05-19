@@ -32,6 +32,9 @@ export class PhotoEditorComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.initializeUploader();
+		this.accountService.currentUser$
+			.pipe(take(1))
+			.subscribe((x) => console.log(x));
 	}
 
 	fileOverBase(event: any) {
@@ -41,6 +44,7 @@ export class PhotoEditorComponent implements OnInit {
 		this.memberService.setMainPhoto(photo.id).subscribe(() => {
 			this.user.photoUrl = photo.url;
 			this.accountService.setCurrentUser(this.user);
+
 			this.member.photoUrl = photo.url;
 			this.member.photos.forEach((p) => {
 				if (p.isMain) p.isMain = false;

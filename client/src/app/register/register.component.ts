@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
 				[
 					Validators.required,
 					Validators.minLength(4),
-					Validators.maxLength(10),
+					Validators.maxLength(20),
 				],
 			],
 			confirmPassword: [
