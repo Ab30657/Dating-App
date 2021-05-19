@@ -6,6 +6,7 @@ import { User } from '../_models/user';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import * as signalR from '@microsoft/signalr';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,6 +25,7 @@ export class PresenceService {
 				accessTokenFactory: () => user.token,
 			})
 			.withAutomaticReconnect()
+			.configureLogging(signalR.LogLevel.Error)
 			.build();
 		this.hubConnection.start().catch((error) => console.log(error));
 
